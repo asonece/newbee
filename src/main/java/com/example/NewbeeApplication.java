@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @MapperScan("com.example.newbee.dao")
 public class NewbeeApplication extends SpringBootServletInitializer {
+	//整合到github test
 	@Override
 	protected final SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
 		return application.sources(NewbeeApplication.class);
