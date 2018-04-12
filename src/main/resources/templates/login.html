@@ -1,18 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<title>NewBee</title>
+<link rel="icon" href="../static/images/favicon.ico" type="image/x-icon" />
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="../static/jquery/jquery-1.8.3.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#doSubmit').click(function(e) {
+			login();
+		});
+		function login(){
+			if($("#loginNo").val()=="请输入用户名"||$("#password").val()==""){
+                alert("请填写用户名和密码！");
+                return false;
+            }else{
+                document.frm.submit();
+            }
+		}
+	    //Enter键支持
+		$('#password').keydown(function(e){
+			if(e.keyCode==13){
+				login();
+			}
+		});
+	});
+</script>
 </head>
-<body>
-<span th:if="${reason != null}">
-    错误信息：<h4 th:text="${reason}"></h4>
-</span>
-<form action="/loginMsg/login" method="post">
-    <p>账号：<input type="text" name="loginNo" value="admin"/></p>
-    <p>密码：<input type="text" name="password" value="123456"/></p>
-    <p><input type="submit" value="登录"/></p>
-</form>
+<body style="margin:auto;">
+<div class="login">
+	<div class="login-top">
+		<h1>NewBee</h1>
+		<form name="frm" action="/loginMsg/login" method="post">
+			<input name="loginNo" id="loginNo" type="text" value="请输入用户名" onfocus="if (this.value == '请输入用户名') {this.value = '';}" onblur="if (this.value == '') {this.value = '请输入用户名';}">
+			<input name="password" id="password" type="password" value="" >
+	    </form>
+	    <div class="forgot">
+	    	<span th:if="${reason != null}" style="float: left;padding-left: 25%;">
+				<span th:text="${reason}" style="color: red;"></span>
+			</span>
+			<input type="submit" id="doSubmit" value="Login" >
+	    </div>
+	</div>
+	<div class="login-bottom">
+		<h3>Tips:本系统仅限内部人员使用!</h3>
+	</div>
+</div>	
+<div class="copyright">
+	<p>Copyright &copy; 1997-2018.Zhaopin All rights reserved.<a target="_blank" href="http://www.zhaopin.com/">智联招聘</a></p>
+</div>
+
 </body>
 </html>

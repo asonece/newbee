@@ -28,6 +28,9 @@ public class PassportInterceptor implements HandlerInterceptor {
         String url = request.getRequestURL().toString();
         HttpSession session = request.getSession();
         String loginNo = (String) session.getAttribute("loginNo");
+        if (url.contains("static/css")||url.contains("static/jquery")||url.contains("static/images")) {
+            return true;
+        }
         if (!url.matches("[\\w/:\\.]*loginMsg/(index|login)")) {
             if (loginNo == null || "".equals(loginNo)) {
                 response.sendRedirect("/loginMsg/index");
@@ -60,5 +63,12 @@ public class PassportInterceptor implements HandlerInterceptor {
             throws Exception {
         System.out.println("------afterCompletion-----");
 
+    }
+
+    public static void main(String[] args) {
+        String url="http://192.168.23.81/static/css/style.css";
+        if (url.contains("static/css")||url.contains("static/jquery")||url.contains("static/images")) {
+            System.out.println(1);
+        }
     }
 }
