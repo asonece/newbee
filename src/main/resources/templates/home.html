@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
+<span th:text="'欢迎 ：' +${loginNo} +'!'"></span>
 <div style="width: 1024px;height: 100%">
-    <img src="../static/images/1.jpg"/>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    <img src="../static/images/1.jpg"/>
 </div>
 </body>
 </html>
