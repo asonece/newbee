@@ -21,7 +21,7 @@ public class PassportInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        System.out.print("------------------------------进来了--------------------------------");
+        System.out.print("------------------------------in--------------------------------");
         response.setDateHeader("Expires",0);
         response.setHeader("Cache-Control","no-cache");
         response.setHeader("Pragma","no-cache");

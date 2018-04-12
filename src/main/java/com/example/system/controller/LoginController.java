@@ -73,8 +73,8 @@ public class LoginController {
 	
 	@RequestMapping(value = "/main")
 	public String login(HttpSession session, Model model) {
-		String loginNo=session.getAttribute("loginNo").toString();
-		model.addAttribute("loginNo",loginNo);
+		/*String loginNo=session.getAttribute("loginNo").toString();
+		model.addAttribute("loginNo",loginNo);*/
 		return "home";
 	}
 	
