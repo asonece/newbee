@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
-@ServletComponentScan
 @MapperScan("com.example.*.dao")
 public class NewbeeApplication extends SpringBootServletInitializer {
 	//test develope merge into master
