@@ -35,7 +35,7 @@ public class PassportInterceptor implements HandlerInterceptor {
             }
         }
         if (loginNo != null && !"".equals(loginNo)) {
-            if (url.matches("[\\w/:\\.]*loginMsg/index")) {
+            if (url.matches("[\\w/:\\.]*loginMsg/(index|login)")) {
                 response.sendRedirect("/loginMsg/main");
                 return false;
             }

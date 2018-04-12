@@ -48,7 +48,7 @@ public class LoginController {
 	public String login(@ModelAttribute LoginMsg loginMsg, HttpServletRequest request, HttpSession session,
 						Model model) {
 		if (loginMsg != null){
-			try {
+            try {
 				String password = loginMsg.getPassword();
 				password = DigestForString.message(StringUtils.defaultString(password, ""),DigestForString.ENCODING_BASE64);
 				loginMsg.setPassword(password);
