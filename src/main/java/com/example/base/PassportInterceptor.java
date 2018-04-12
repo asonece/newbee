@@ -13,29 +13,21 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Ansai on 2018/4/12.
  */
-@Component
 public class PassportInterceptor implements HandlerInterceptor {
 
-    private static final Logger logger = LoggerFactory.getLogger(PassportInterceptor.class);
-
+    /**
+     * controller 执行之前调用
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        System.out.print("------------------------------in--------------------------------");
         response.setDateHeader("Expires",0);
         response.setHeader("Cache-Control","no-cache");
         response.setHeader("Pragma","no-cache");
+        System.out.println("------preHandle-----");
         String url = request.getRequestURL().toString();
         HttpSession session = request.getSession();
         String loginNo = (String) session.getAttribute("loginNo");
-		/*if (!url.matches("[\\w/:\\.]*loginMsg/(index|login)") &&
-			!url.matches("[\\w/:\\.]*task/(delTask|publishTask|getTaskList|getTaskDetail|getAllRegion|getAllSchool)")&&
-			!url.matches("[\\w/:\\.]*communitytob/(submitPost|uploadPicture|deletePost|operatePostReply|copyPost)")) {
-			if (loginNo == null || "".equals(loginNo)) {
-				response.sendRedirect("/loginMsg/index");
-				return false;
-			}
-		}*/
         if (!url.matches("[\\w/:\\.]*loginMsg/(index|login)")) {
             if (loginNo == null || "".equals(loginNo)) {
                 response.sendRedirect("/loginMsg/index");
@@ -51,13 +43,22 @@ public class PassportInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    /**
+     * controller 执行之后，且页面渲染之前调用
+     */
     @Override
-    public void postHandle(javax.servlet.http.HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
-            throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        System.out.println("------postHandle-----");
     }
 
+    /**
+     * 页面渲染之后调用，一般用于资源清理操作
+     */
     @Override
-    public void afterCompletion(javax.servlet.http.HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
+        System.out.println("------afterCompletion-----");
+
     }
 }
