@@ -4,7 +4,6 @@ import com.example.newbee.dao.UserDao;
 import com.example.newbee.entity.User;
 import com.example.newbee.service.UserService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 
 /**
@@ -17,6 +16,11 @@ public class UserServiceImpl implements UserService {
 
     public User getUserById(int userId) {
         return userDao.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userDao.selectByName(name);
     }
 
     public boolean addUser(User record){

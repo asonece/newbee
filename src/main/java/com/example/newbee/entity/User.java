@@ -1,9 +1,17 @@
 package com.example.newbee.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 /**
  * Created by Ansai on 2018/4/10.
  */
-public class User {
+@Entity
+public class User implements Serializable {
+
+    @Id@GeneratedValue
     private Integer id;
 
     private String userName;
