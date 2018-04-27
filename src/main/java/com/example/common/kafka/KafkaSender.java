@@ -18,11 +18,12 @@ public class KafkaSender {
 
     //发送消息方法
     public void send() {
+        String uuid=UUID.randomUUID().toString();
         Message message = new Message();
         message.setId(System.currentTimeMillis());
-        message.setMsg(UUID.randomUUID().toString());
+        message.setMsg(uuid);
         message.setSendTime(new Date());
-        kafkaTemplate.send("test", UUID.randomUUID().toString());
+        kafkaTemplate.send("test",uuid);
         System.out.println("------------------send message =" + message);
     }
 }
