@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Ansai on 2018/4/27.
@@ -31,11 +32,14 @@ public class MyServer {
                 while ((inputLine = bufferedReader.readLine())!=null){
                     printWriter.println(inputLine);
                 }
+                Thread.sleep(1000L);
                 long b = System.currentTimeMillis();
-                System.out.println("此线程花费了："+(b-a)+"秒！");
+                System.out.println("此线程花费了："+(b-a)+"毫秒！");
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
                 try {
                     bufferedReader.close();
                     printWriter.close();
@@ -47,7 +51,7 @@ public class MyServer {
         }
     }
     public static void main(String[] args) throws IOException {         //服务端的主线程是用来循环监听客户端请求
-        ServerSocket server = new ServerSocket(8088);       //创建一个服务端且端口为8686
+        ServerSocket server = new ServerSocket(8686);       //创建一个服务端且端口为8686
         Socket client = null;
         while (true){           //循环监听
             client = server.accept();       //服务端监听到一个客户端请求
